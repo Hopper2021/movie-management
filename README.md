@@ -12,7 +12,7 @@ Additional README details can be found [here](https://github.com/PrimeAcademy/re
 
 - [x] Create Details Page
     - [x] Display all movie details including ALL genres for selected movie. Store this data in redux!
-    - [ ] Create Back to List button, link to home "/" 
+    - [x] Create Back to List button, link to home "/" 
 - [ ] Create Movie Page
     - [ ] Add input fields:
         - [ ] Add an input field (for movie title)

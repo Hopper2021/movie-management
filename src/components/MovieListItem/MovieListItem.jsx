@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import  { useHistory } from 'react-router-dom';
 
 function MovieListItem({movie}) {
@@ -16,7 +16,7 @@ function MovieListItem({movie}) {
         // keep its scope. Without the anon function, movie will
         // appear as SyntheticEvent, which we don't want!
         <div onClick={() => moveToDetailPage(movie)}>
-            {JSON.stringify(movie)}
+            {/* {JSON.stringify(movie)} */}
             <h3>{movie.title}</h3>
             <img src={movie.poster} alt={movie.title}/>
         </div>

@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
 function MovieItemDetails() {
 
@@ -9,6 +10,9 @@ function MovieItemDetails() {
             <h3>{movie.title}</h3>
             <img src={movie.poster} alt={movie.title}/>
             <p>{movie.description}</p>
+            <Router>
+                <Link to="/">Back</Link>
+            </Router>
         </>
     )
 }
