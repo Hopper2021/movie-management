@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Link } from 'react-router-dom';
 
 function MovieItemDetails() {
 
