@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 function MovieItemDetails() {
 
-    const movie = useSelector(store => store.movies)
+    const movie = useSelector(store => store.selectedMovie)
 
     return(
         <>

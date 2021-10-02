@@ -3,7 +3,6 @@ const router = express.Router();
 const pool = require('../modules/pool')
 
 router.get('/', (req, res) => {
-
   const query = `SELECT * FROM movies ORDER BY "title" ASC`;
   pool.query(query)
     .then( result => {
@@ -13,8 +12,18 @@ router.get('/', (req, res) => {
       console.log('ERROR: Get all movies', err);
       res.sendStatus(500)
     })
-
 });
+
+/* This responds to the fetchMovieDetails function */
+router.get('/details/:id', (req, res) => {
+  const sqlText = `SELECT * FROM "movies" WHERE "id" = $1`;
+  pool.query(sqlText, [req.params])
+    .then(result => {
+      res.send(result.rows)
+    }) .catch(error => {
+      console.log('Error is fetching Movie Details from Server: ', error);
+    })
+})
 
 router.post('/', (req, res) => {
   console.log(req.body);
