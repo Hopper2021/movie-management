@@ -1,11 +1,14 @@
-function MovieItemDetails({movie}) {
+import { useSelector } from "react-redux";
+
+function MovieItemDetails() {
+
+    const movie = useSelector(store => store.movies)
 
     return(
         <>
-            <div>
-                <h3>{movie.title}</h3>
-                <img src={movie.poster} alt={movie.title}/>
-            </div>
+            <h3>{movie.title}</h3>
+            <img src={movie.poster} alt={movie.title}/>
+            <p>{movie.description}</p>
         </>
     )
 }

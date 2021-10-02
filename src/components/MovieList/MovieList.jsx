@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
-import MovieItemDetails from '../MovieItemDetails/MovieItemDetails.jsx'
 import  { useHistory } from 'react-router-dom';
+import MovieListItem from '../MovieListItem/MovieListItem';
 
 function MovieList() {
     const history = useHistory();
@@ -13,7 +13,9 @@ function MovieList() {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
 
-    const moveToDetailPage = () => {
+    const moveToDetailPage = (movie) => {
+        console.log('Movie in move to detail page: ', movie);
+        dispatch({ type: 'SET_MOVIE_DETAILS', payload: movie })
         history.push('/details');
     }
 
@@ -24,11 +26,9 @@ function MovieList() {
                 {/* Testing to see if description is coming back, Success! */}
                 {/* {JSON.stringify(movies)} */}
                 {movies.map(movie => {
-                    return (
-                        <MovieItemDetails key={movie.id} movie={movie}
-                        onClick={moveToDetailPage}
-                        />
-                    );
+                    <div onClick={moveToDetailPage}>
+                        <MovieListItem key={movie.id} movie={movie}/>
+                    </div>
                 })}
             </section>
         </main>
