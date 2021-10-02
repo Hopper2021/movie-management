@@ -6,13 +6,16 @@ function MovieListItem({movie}) {
     const dispatch = useDispatch();
 
     const moveToDetailPage = (movie) => {
-        console.log('Movie in move to detail page: ', movie );
+        console.log('Movie in Movie List Item detail page function: ', movie );
         dispatch({ type: 'SET_MOVIE_DETAILS', payload: movie })
         history.push('/details');
     }
 
     return(
-        <div onClick={moveToDetailPage}>
+        // Using the onClick anonymous function here helps 'movie'
+        // keep its scope. Without the anon function, movie will
+        // appear as SyntheticEvent, which we don't want!
+        <div onClick={() => moveToDetailPage(movie)}>
             {JSON.stringify(movie)}
             <h3>{movie.title}</h3>
             <img src={movie.poster} alt={movie.title}/>
