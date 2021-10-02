@@ -20,7 +20,7 @@ function* rootSaga() {
 const selectedMovie = (state = {}, action) => {
     switch(action.type) {
         case 'SET_MOVIE_DETAILS':
-            return action.payload;
+            return action.payload;            
         default:
             return state;
     }
@@ -44,7 +44,7 @@ function* fetchMovieDetails(action) {
         const movie = action.payload;
         console.log('fetchMovieDetails action (movie):', movie.id );
         yield axios.get(`/api/movie/${movie.id}`)
-        yield put ({ type: 'SET_MOVIE_DETAILS', payload: movie.id })
+        yield put({ type: 'SET_MOVIE_DETAILS', payload: movie.id })
     } catch (error) {
         console.log('Error in fetching Movie details: ', error);
         alert('Unable to fetch movie details, Sorry!');

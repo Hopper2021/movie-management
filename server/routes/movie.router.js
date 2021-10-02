@@ -23,7 +23,7 @@ router.get('/details/:id', (req, res) => {
     WHERE "movies"."id" = $1`;
   pool.query(sqlText, [req.params])
     .then(result => {
-      res.send(result.rows)
+      res.send(result.rows);
     }) .catch(error => {
       console.log('Error is fetching Movie Details from Server: ', error);
     })

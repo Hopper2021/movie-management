@@ -7,6 +7,7 @@ function MovieItemDetails() {
 
     return(
         <>
+            {JSON.stringify(movie)}
             <h3>{movie.title}</h3>
             <img src={movie.poster} alt={movie.title}/>
             <p>{movie.description}</p>

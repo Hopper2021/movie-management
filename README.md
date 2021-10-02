@@ -13,12 +13,12 @@ Additional README details can be found [here](https://github.com/PrimeAcademy/re
 - [x] Create Details Page
     - [x] Display all movie details including ALL genres for selected movie. Store this data in redux!
     - [x] Create Back to List button, link to home "/" 
-- [ ] Create Movie Page
-    - [ ] Add input fields:
-        - [ ] Add an input field (for movie title)
-        - [ ] Add input field (for movie poster image URL)
-        - [ ] Add Text area (for movie description)
-        - [ ] Add a dropdown (for genres)
+- [x] Create Add Movie Page
+    - [x] Add input fields:
+        - [x] Add an input field (for movie title)
+        - [x] Add input field (for movie poster image URL)
+        - [x] Add Text area (for movie description)
+        - [x] Add a dropdown (for genres)
     - [ ] Add 2 buttons:
         - [ ] Cancel button, that brings the user to the MovieList Page ( Home / "/" )
         - [ ] Save button, which should save these input in the database and bring the user to the home/List Page (Which now has the new movie)
