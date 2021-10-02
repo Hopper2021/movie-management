@@ -1,7 +1,14 @@
 function AddMovie() {
     return(
         <>
-            <form></form>
+            <form>
+                <input 
+                    required
+                    placeholder="Title"/>
+                <input 
+                    required
+                    placeholder="Description"/>
+            </form>
         </>
     )
 }
