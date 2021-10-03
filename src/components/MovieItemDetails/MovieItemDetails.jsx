@@ -15,7 +15,7 @@ function MovieItemDetails() {
             <h3>Description:</h3>
             <p>{movie.description}</p>
             <h3>Genres:</h3>
-            {genres.map(genre => (
+            {[genres].map(genre => (
                 <li>{genre}</li>
             ))} <br />
             <Router>

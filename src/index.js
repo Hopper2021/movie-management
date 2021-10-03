@@ -17,6 +17,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_GENRES', fetchAllGenres);
     yield takeEvery('FETCH_MOVIE_DETAILS', fetchMovieDetails);
     yield takeEvery('FETCH_GENRE_DETAILS', fetchGenreDetails);
+    yield takeEvery('POST_NEW_MOVIE', postNewMovie);
 }
 
 const selectedMovie = (state = {}, action) => {
@@ -81,6 +82,18 @@ function* fetchGenreDetails(action) {
     } catch (error) {
         console.log('Error in fetching Genre Details in index: ', error);
         alert('Unable to fetch genre details, my bad!!')
+    }
+}
+
+function* postNewMovie(action) {
+    try {
+        const newMovie = action.payload;
+        console.log('New Movie - ', newMovie);
+        yield axios.post('/api/movie', newMovie)
+        yield put({ type: 'FETCH_MOVIES' })
+    } catch (error) {
+        console.log('Error in postNewMovie - ', error);
+        alert('Error in posting new movie.');
     }
 }
 

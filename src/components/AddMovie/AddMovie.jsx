@@ -1,13 +1,12 @@
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import React, { useState }from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import  { useHistory } from 'react-router-dom';
-
-
 
 function AddMovie() {
     const dispatch = useDispatch();
     const history = useHistory();
+    const genres = useSelector(store => store.genres)
 
     let [newMovie, setNewMovie] = useState(
         { title: '', poster: '', description: '', genre: '' }
@@ -49,9 +48,13 @@ function AddMovie() {
                     value={newMovie.poster}
                     onChange={handlePosterChange}/><br /><br /> 
                 <label for="genres">Choose a genre</label><br />
+                {/* {JSON.stringify(genres)}<br /> */}
                 <select id="genres" name="genres" label="genres"
-                    onChange={handleGenreChange}>
-                    <option value="Adventure">Adventure</option>
+                    onSelect={handleGenreChange}>
+                    {genres.map(({name}) => (
+                        <option value={name}>{name}</option>
+                    ))}
+                    {/* <option value="Adventure">Adventure</option>
                     <option value="Animated">Animated</option>
                     <option value="Biographical">Biographical</option>
                     <option value="Comedy">Comedy</option>
@@ -63,7 +66,7 @@ function AddMovie() {
                     <option value="Romantic">Romantic</option>
                     <option value="Science Fiction">Science Fiction</option>
                     <option value="Space-Opera">Space-Opera</option>
-                    <option value="Superhero">Superhero</option>
+                    <option value="Superhero">Superhero</option> */}
                 </select><br /><br />
                 <textarea cols="40" rows="5"
                     placeholder="Description"

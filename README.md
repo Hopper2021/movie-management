@@ -21,7 +21,7 @@ Additional README details can be found [here](https://github.com/PrimeAcademy/re
         - [x] Add a dropdown (for genres)
     - [ ] Add 2 buttons:
         - [x] Cancel button, that brings the user to the MovieList Page ( Home / "/" )
-        - [ ] Save button, which should save these input in the database and bring the user to the home/List Page (Which now has the new movie)
+        - [x] Save button, which should save these input in the database and bring the user to the home/List Page (Which now has the new movie)
             `Form, onSubmit, POSTS movie to database, then history.push to home page`
 - [ ] Style it up!
     - [ ] Cards for movie posters are always a good choice
