@@ -13,11 +13,7 @@ function MovieListItem({movie}) {
     }
 
     return(
-        // Using the onClick anonymous function here helps 'movie'
-        // keep its scope. Without the anon function, movie will
-        // appear as SyntheticEvent, which we don't want!
         <div onClick={moveToDetailPage}>
-            {/* {JSON.stringify(movie)} */}
             <h3>{movie.title}</h3>
             <img src={movie.poster} alt={movie.title}/>
         </div>

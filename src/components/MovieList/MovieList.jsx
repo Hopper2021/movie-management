@@ -22,8 +22,6 @@ function MovieList() {
                 <Link to="/addMovie">Add New Movie</Link>
             </Router>
             <section className="movies">
-                {/* Testing to see if description is coming back, Success! */}
-                {JSON.stringify(genres)}
                 {movies.map(movie => (
                     <MovieListItem key={movie.id} movie={movie}/>
                 ))}

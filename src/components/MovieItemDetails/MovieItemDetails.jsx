@@ -10,16 +10,14 @@ function MovieItemDetails() {
 
     return(
         <>
-            {/* {JSON.stringify(genres)} */}
-            {/* {JSON.stringify(movie)} */}
             <h3>{movie.title}</h3>
             <img src={movie.poster} alt={movie.title}/>
             <h3>Description:</h3>
             <p>{movie.description}</p>
             <h3>Genres:</h3>
-            {/* {[genres].map(genre => (
+            {genres.map(genre => (
                 <li>{genre}</li>
-            ))} <br /> */}
+            ))} <br />
             <Router>
                 <Link to="/">Back</Link>
             </Router>
