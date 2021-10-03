@@ -16,14 +16,10 @@ router.get('/', (req, res) => {
 
 /* This responds to the fetchMovieDetails function */
 router.get('/details/:id', (req, res) => {
-  const sqlText = `
-    SELECT * FROM "movies" 
-    JOIN "movies_genres" ON "movies"."id" = "movie_id"
-    JOIN "genres" ON "movies_genres"."genre_id" = "genres"."id"
-    WHERE "movies"."id" = $1`;
+  const sqlText = `SELECT * FROM "movies" WHERE "id" = $1`;
   pool.query(sqlText, [req.params])
     .then(result => {
-      res.send(result.rows);
+      res.send(result.rows)
     }) .catch(error => {
       console.log('Error is fetching Movie Details from Server: ', error);
     })

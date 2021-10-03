@@ -6,11 +6,13 @@ import './MovieList.css'
 
 function MovieList() {
     const dispatch = useDispatch();
-    const movies = useSelector(store => store.movies);
+    const reduxStore = useSelector(store => store);
+    const { movies, genres } = reduxStore;
 
     useEffect(() => {
-        console.log('Fetching the movies from MovieList!');
+        console.log('Fetching the movies and genres from MovieList!');
         dispatch({ type: 'FETCH_MOVIES' });
+        dispatch({ type: 'FETCH_GENRES' });
     }, []);
 
     return (
@@ -21,7 +23,7 @@ function MovieList() {
             </Router>
             <section className="movies">
                 {/* Testing to see if description is coming back, Success! */}
-                {/* {JSON.stringify(movies)} */}
+                {JSON.stringify(genres)}
                 {movies.map(movie => (
                     <MovieListItem key={movie.id} movie={movie}/>
                 ))}

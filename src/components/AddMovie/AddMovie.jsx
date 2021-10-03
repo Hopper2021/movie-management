@@ -1,8 +1,14 @@
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
+
 function AddMovie() {
+
+    const handleSubmit = () => {
+        
+    }
 
     return(
         <>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <input required
                     placeholder="Title"/><br />
                 <input required
@@ -25,8 +31,12 @@ function AddMovie() {
                 </select><br /><br />
                 <textarea cols="40" rows="5"
                     placeholder="Description"/><br />
-                <button>Cancel</button>
-                <button>Save</button>
+                <Router>
+                    <Link to="/">
+                    <button>Cancel</button>
+                    </Link>
+                </Router>
+                    <button type="submit">Save</button>
             </form>
         </>
     )

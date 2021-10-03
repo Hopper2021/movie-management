@@ -8,6 +8,7 @@ function MovieListItem({movie}) {
     const moveToDetailPage = (movie) => {
         console.log('Movie in Movie List Item detail page function: ', movie );
         dispatch({ type: 'SET_MOVIE_DETAILS', payload: movie })
+        dispatch({ type: 'SET_GENRE_DETAILS', payload: movie })
         history.push('/details');
     }
 
