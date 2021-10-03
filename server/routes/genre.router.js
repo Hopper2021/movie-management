@@ -23,7 +23,7 @@ router.get('/details/:id', (req, res) => {
   pool.query(sqlText, [req.params.id])
     .then(result => {
       res.send(result.rows[0].genres)
-      console.log('Results from api/genres/details/id: ', result.rows);
+      console.log('Genres GET: ', result.rows[0].genres);
     }) .catch(error => {
       res.sendStatus(500);
       console.log('Error in fetching Movie Details from Server: ', error);

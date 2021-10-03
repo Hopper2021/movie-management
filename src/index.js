@@ -15,8 +15,8 @@ import axios from 'axios';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('FETCH_GENRES', fetchAllGenres);
-    yield takeEvery('SET_MOVIE_DETAILS', fetchMovieDetails);
-    yield takeEvery('SET_GENRE_DETAILS', fetchGenreDetails);
+    yield takeEvery('FETCH_MOVIE_DETAILS', fetchMovieDetails);
+    yield takeEvery('FETCH_GENRE_DETAILS', fetchGenreDetails);
 }
 
 const selectedMovie = (state = {}, action) => {
@@ -28,10 +28,6 @@ const selectedMovie = (state = {}, action) => {
     }
 };
 
-// const defaultSelectedGenre = {
-//     movie_id: '',
-//     genres: ''
-// }
 const selectedGenre = (state = {}, action) => {
     switch(action.type) {
         case 'SET_GENRE_DETAILS':
@@ -67,8 +63,9 @@ function* fetchMovieDetails(action) {
     try {
         const movie = action.payload;
         console.log('fetchMovieDetails action, MOVIE:', movie.id );
-        yield axios.get(`/api/movie/details/${movie.id}`)
-        yield put({ type: 'SET_MOVIE_DETAILS', payload: movie.data })
+        const movieDetails = yield axios.get(`/api/movie/details/${movie.id}`)
+        console.log('What is movieDetails? - ', movieDetails );
+        yield put({ type: 'SET_MOVIE_DETAILS', payload: movieDetails.data })
     } catch (error) {
         console.log('Error in fetching Movie details: ', error);
         alert('Unable to fetch movie details, Sorry!');
@@ -79,6 +76,7 @@ function* fetchGenreDetails(action) {
     try {
         const movie = action.payload;
         const movieGenres = yield axios.get(`/api/genre/details/${movie.id}`)
+        console.log('What is movieGenres? - ', movieGenres);
         yield put({ type: 'SET_GENRE_DETAILS', payload: movieGenres.data })
     } catch (error) {
         console.log('Error in fetching Genre Details in index: ', error);
