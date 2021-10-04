@@ -13,13 +13,16 @@ import axios from 'axios';
 
 // Create the rootSaga generator function
 function* rootSaga() {
-    yield takeEvery('FETCH_MOVIES', fetchAllMovies);
-    yield takeEvery('FETCH_GENRES', fetchAllGenres);
-    yield takeEvery('FETCH_MOVIE_DETAILS', fetchMovieDetails);
-    yield takeEvery('FETCH_GENRE_DETAILS', fetchGenreDetails);
-    yield takeEvery('POST_NEW_MOVIE', postNewMovie);
+    yield takeEvery('FETCH_MOVIES', fetchAllMovies); // GET all movies from database
+    yield takeEvery('FETCH_GENRES', fetchAllGenres); // GET all genres from database
+    yield takeEvery('FETCH_MOVIE_DETAILS', fetchMovieDetails); // GET movie details when movie is clicked on in MovieList
+    yield takeEvery('FETCH_GENRE_DETAILS', fetchGenreDetails); // Get genre details when movie is clicked on in MovieList
+    yield takeEvery('POST_NEW_MOVIE', postNewMovie); // Create new Movie from Add Movie Page.
 }
 
+// Stores the Movie id, title, poster and description
+// based on the movie id provided to fetchMovieDetails
+// This reducer is used in MovieItemDetails
 const selectedMovie = (state = {}, action) => {
     switch(action.type) {
         case 'SET_MOVIE_DETAILS':
@@ -29,6 +32,9 @@ const selectedMovie = (state = {}, action) => {
     }
 };
 
+// Stores the genres associated with the movie id
+// provided to fetchGenreDetails
+// This reducer is used in MovieItemDetails
 const selectedGenre = (state = {}, action) => {
     switch(action.type) {
         case 'SET_GENRE_DETAILS':
@@ -38,8 +44,8 @@ const selectedGenre = (state = {}, action) => {
     }
 }
 
+// Pulls back all movies from movies table
 function* fetchAllMovies() {
-    // get all movies from the DB
     try {
         const movies = yield axios.get('/api/movie');
         console.log('get all:', movies.data);
@@ -49,6 +55,7 @@ function* fetchAllMovies() {
     }
 }
 
+// Pulls back all genres from genres table
 function* fetchAllGenres() {
     try {
         const genres = yield axios.get('/api/genre');
@@ -60,6 +67,10 @@ function* fetchAllGenres() {
     }
 }
 
+// Action contains all movie details, the movie id is used to pull
+// back all associated information from movies table in the server
+// which is id, title, poster, and description. This is then sent 
+// to the selectedMovie reducer
 function* fetchMovieDetails(action) {
     try {
         const movie = action.payload;
@@ -73,6 +84,10 @@ function* fetchMovieDetails(action) {
     }
 }
 
+// Action contains all movie details, the movie id is used to pull
+// back all associated genres through table joins in the server
+// the information pulled back is the name of all genres tied to the movie id
+// that information is then sent to the selectedGenre reducer
 function* fetchGenreDetails(action) {
     try {
         const movie = action.payload;
@@ -85,6 +100,8 @@ function* fetchGenreDetails(action) {
     }
 }
 
+// Action is the compiled title, poster, genre, and description from 
+// AddMovie page. That information is then posted to the server
 function* postNewMovie(action) {
     try {
         const newMovie = action.payload;

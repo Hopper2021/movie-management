@@ -6,9 +6,11 @@ import './MovieList.css'
 
 function MovieList() {
     const dispatch = useDispatch();
+    /* useSelector allows us to use the ReduxStore to share the info stored in reduxStore */
     const reduxStore = useSelector(store => store);
-    const { movies, genres } = reduxStore;
+    const { movies } = reduxStore;
 
+    /* useEffect bring all movies to the Movie List page on page load */
     useEffect(() => {
         console.log('Fetching the movies and genres from MovieList!');
         dispatch({ type: 'FETCH_MOVIES' });
@@ -18,9 +20,11 @@ function MovieList() {
     return (
         <main>
             <h1>MovieList</h1>
+            {/* Router and Link to Add Movie Page */}
             <Router>
                 <Link to="/addMovie">Add New Movie</Link>
             </Router>
+            {/* Mapped through movies reducer brought through the reduxStore */}
             <section className="movies">
                 {movies.map(movie => (
                     <MovieListItem key={movie.id} movie={movie}/>
